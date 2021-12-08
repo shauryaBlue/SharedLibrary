@@ -13,29 +13,28 @@ timestamps {
         }
         stage ('websiteCD - delete existing pod') {      
             sh """ 
-            if kubectl get pods | grep website
-                then kubectl delete pod website
+            if kubectl get pods | grep ${name}
+                then kubectl delete pod ${name}
             fi
             """ 
         }
         stage ('websiteCD - run new pod') {
             sh """ 
-            kubectl run website --image=sadhorse22/website
+            kubectl run website --image=sadhorse22/${name}
             """ 
         }
         stage ('websiteCD - expose new pod') {
             sh """ 
-            if kubectl get svc | grep website
-                then kubectl delete svc website
+            if kubectl get svc | grep ${name}
+                then kubectl delete svc ${name}
             fi
-            kubectl expose pod website --type=NodePort --port=80 --target-port=8080
-            
+            kubectl expose pod ${name} --type=NodePort --port=80 --target-port=8080
             """ 
         }
         stage ('websiteCD - get website url') {
             sh """ 
             minikube ip
-            kubectl get service website
+            kubectl get service ${name}
             """ 
         }
     }
