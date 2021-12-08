@@ -1,2 +1,2 @@
 @Library('sharedLibrary') _
-CI
+CI 'website'
