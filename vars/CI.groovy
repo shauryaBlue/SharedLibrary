@@ -40,7 +40,7 @@ def call(Map args){
                     }
                   }
                 steps {
-                     build job: "websiteContinuousDelivery", wait: false, parameters: [string(name: 'name', value: String.valueOf(name))]
+                     CD(name : args.name)
                   }
                }
           }
