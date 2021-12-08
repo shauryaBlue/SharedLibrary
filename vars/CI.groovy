@@ -1,4 +1,4 @@
-def call(String build_type, String name, String image_type){
+def call(Map args){
   pipeline {
        agent any
        stages {
@@ -23,20 +23,20 @@ def call(String build_type, String name, String image_type){
              stage ('websiteCI - Build/Push docker image') {
                   when{
                     expression {
-                      return build_type == "Release";
+                      return args.build_type == "Release";
                     }
                   }
                   steps{
                     sh """ 
-                    docker build -t sadhorse22/${name} .
-                    docker push sadhorse22/${name}
+                    docker build -t sadhorse22/${args.name} .
+                    docker push sadhorse22/${args.name}
                     """ 
                   }	
                }
               stage('Trigger Deployment') {
                   when{
                     expression {
-                      return build_type == "Release";
+                      return args.build_type == "Release";
                     }
                   }
                 steps {
