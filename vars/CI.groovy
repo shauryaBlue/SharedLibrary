@@ -46,4 +46,4 @@ def call(String build_type, String name, String image_type){
           }
        }
    }
-}
+
