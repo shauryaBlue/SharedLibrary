@@ -39,7 +39,7 @@ def call(Map args){
                       return args.build_type == "Release";
                     }
                   }
-                steps {
+                script {
                      CD(name : args.name)
                   }
                }
