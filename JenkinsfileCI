@@ -26,7 +26,7 @@ timestamps{
                     """ 
                 }
             stage('Trigger Deployment') {
-                build job: "websiteContinuousDelivery"
+                build job: "websiteContinuousDelivery", wait: false, parameters: [string(name: 'name', value: String.valueOf(name))]
                 }
             }
         }
