@@ -20,7 +20,7 @@ timestamps {
         }
         stage ('websiteCD - run new pod') {
             sh """ 
-            kubectl run website --image=sadhorse22/${name}
+            kubectl run ${name} --image=sadhorse22/${name}
             """ 
         }
         stage ('websiteCD - expose new pod') {
