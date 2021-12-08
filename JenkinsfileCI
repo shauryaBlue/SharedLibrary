@@ -6,11 +6,6 @@ timestamps{
                 pwd
                 """
             }
-            stage ('websiteCI - ChangeLocation') {
-                sh """ 
-                pwd
-                """ 
-            }
             stage ('websiteCI - Build war file') {
                 sh """ 
                 rm -f /.idea
