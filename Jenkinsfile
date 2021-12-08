@@ -1,6 +1,6 @@
 @Library('sharedLibrary') _
 CI(
-  build_type: 'build',
-  name: 'website',
+  build_type: 'Release',
+  name: 'kazzaz',
   image_type: 'java'
 )
