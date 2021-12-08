@@ -1,1 +1,39 @@
+timestamps {
 
+node () {
+
+	stage ('websiteCD - check minikube status') {
+	sh """
+	echo 'check status'
+	if minikube status | grep -q 'Running'; 
+	    then echo "matched"
+	else
+	  minikube start
+    fi
+	"""
+	    
+	}
+	stage ('websiteCD - delete existing pod') {
+ 		
+sh """ 
+if kubectl get pods | grep website
+    then kubectl delete pod website
+fi
+""" 
+	}
+	stage ('websiteCD - run new pod') {
+sh """ 
+kubectl run website --image=sadhorse22/website
+ """ 
+	}
+	stage ('websiteCD - expose new pod') {
+ 	
+sh """ 
+if kubectl get svc | grep website
+    then kubectl delete svc website
+fi
+kubectl expose pod website --type=NodePort --port=80 --target-port=8080
+ """ 
+	}
+}
+}
