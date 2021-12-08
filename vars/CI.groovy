@@ -39,9 +39,13 @@ def call(Map args){
                       return args.build_type == "Release";
                     }
                   }
-                steps {
-                     CD(name : args.name)
+                  script{
+                    def cd = load "CD.groovy"
+                    cd.call()
                   }
+                // steps {
+                //      CD(name : args.name)
+                //   }
                }
           }
        }
