@@ -49,5 +49,4 @@ def call(Map args){
                 }
           }
        }
-    }
 
