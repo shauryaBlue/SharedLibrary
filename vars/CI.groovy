@@ -21,7 +21,12 @@ def call(String build_type, String name, String image_type){
 
            }
            if(build_type == "Release"){
-             stage ('websiteCI - Build/Push docker image') { 
+             stage ('websiteCI - Build/Push docker image') {
+                  when{
+                    expression {
+                      return params.build_type == "Release";
+                    }
+                  }
                   steps{
                     sh """ 
                     docker build -t sadhorse22/${name} .
@@ -30,6 +35,11 @@ def call(String build_type, String name, String image_type){
                   }	
                }
               stage('Trigger Deployment') {
+                  when{
+                    expression {
+                      return params.build_type == "Release";
+                    }
+                  }
                 steps {
                      build job: "websiteContinuousDelivery", wait: false, parameters: [string(name: 'name', value: String.valueOf(name))]
                   }
