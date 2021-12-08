@@ -29,7 +29,13 @@ timestamps {
                 then kubectl delete svc website
             fi
             kubectl expose pod website --type=NodePort --port=80 --target-port=8080
+            
+            """ 
+        }
+        stage ('websiteCD - get website url') {
+            sh """ 
             minikube ip
+            kubectl get service website
             """ 
         }
     }
