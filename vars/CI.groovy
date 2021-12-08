@@ -23,7 +23,7 @@ def call(String build_type, String name, String image_type){
              stage ('websiteCI - Build/Push docker image') {
                   when{
                     expression {
-                      return params.build_type == "Release";
+                      return build_type == "Release";
                     }
                   }
                   steps{
@@ -36,7 +36,7 @@ def call(String build_type, String name, String image_type){
               stage('Trigger Deployment') {
                   when{
                     expression {
-                      return params.build_type == "Release";
+                      return build_type == "Release";
                     }
                   }
                 steps {
