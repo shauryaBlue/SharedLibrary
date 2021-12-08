@@ -1,6 +1,4 @@
 def call(Map args){
-  pipeline {
-       agent any
        stages {
            stage ('websiteCD - check minikube status') {
                 steps{
