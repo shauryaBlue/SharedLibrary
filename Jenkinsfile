@@ -1,2 +1,6 @@
 @Library('sharedLibrary') _
-CI('build','website','java')
+CI(
+  build_type:'build',
+  name: 'website',
+  image_type: 'java'
+)
