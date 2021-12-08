@@ -20,7 +20,6 @@ def call(String build_type, String name, String image_type){
                 }
 
            }
-           if(build_type == "Release"){
              stage ('websiteCI - Build/Push docker image') {
                   when{
                     expression {
