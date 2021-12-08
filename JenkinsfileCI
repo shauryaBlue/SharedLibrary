@@ -22,7 +22,7 @@ timestamps{
                 stage ('websiteCI - Build/Push docker image') { 	
                     sh """ 
                     docker build -t sadhorse22/${name} .
-                    docker push sadhorse22/website
+                    docker push sadhorse22/${name}
                     """ 
                 }
             stage('Trigger Deployment') {
