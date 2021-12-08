@@ -1,5 +1,5 @@
 def call(Map args){
-        stages{
+        node{
            stage ('websiteCD - check minikube status') {
                 steps{
                     sh """
