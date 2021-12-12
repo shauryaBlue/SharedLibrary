@@ -4,7 +4,7 @@ def call(Map args){
        stages {
            stage ('websiteCI - Checkout') {
                 steps{
-                    checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '0a1990f2-e10e-49c1-a634-deb01976d44b', url: 'https://github.com/shauryaBlue/website.git']]]) 
+                    checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '0a1990f2-e10e-49c1-a634-deb01976d44b', url: args.url ]]]) 
                     sh """
                     pwd
                     """
