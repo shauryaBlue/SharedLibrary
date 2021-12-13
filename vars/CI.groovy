@@ -11,6 +11,11 @@ def call(Map args){
                 }
            }
            stage ('websiteCI - Build war file') {
+                when{
+                    expression {
+                      return args.image_type == "Java";
+                    }
+                  }
                 steps{
                     sh """ 
                     rm -f /.idea
