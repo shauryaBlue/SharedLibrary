@@ -23,12 +23,23 @@ def call(Map args){
                     """ 
                   }
               stage ('websiteCD - expose new pod') {
-                        sh """ 
-                        if kubectl get svc | grep ${args.name}
-                            then kubectl delete svc ${args.name}
-                        fi
-                        kubectl expose pod ${args.name} --type=NodePort --port=80 --target-port=8080
-                        """ 
+                      if(args.image_type == "Java"){
+                          sh """ 
+                           if kubectl get svc | grep ${args.name}
+                              then kubectl delete svc ${args.name}
+                           fi
+                            kubectl expose pod ${args.name} --type=NodePort --port=8080 --target-port=8080
+                          """ 
+                      }
+                      else{
+                          sh """ 
+                            if kubectl get svc | grep ${args.name}
+                              then kubectl delete svc ${args.name}
+                            fi
+                            kubectl expose pod ${args.name} --type=NodePort --port=5000 --target-port=5000
+                          """ 
+                      }
+
                     }
                 stage ('websiteCD - get website url') {    
                         sh """ 
