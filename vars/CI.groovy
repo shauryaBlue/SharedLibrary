@@ -46,7 +46,7 @@ def call(Map args){
                   }
                   steps{
                     script{
-                        CD(name: args.name)
+                        CD(name: args.name, image_type: args.image_type)
                     }
                   }
                }

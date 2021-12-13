@@ -31,7 +31,7 @@ def call(Map args){
                             kubectl expose pod ${args.name} --type=NodePort --port=8080 --target-port=8080
                           """ 
                       }
-                      else{
+                      else {
                           sh """ 
                             if kubectl get svc | grep ${args.name}
                               then kubectl delete svc ${args.name}
